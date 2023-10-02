@@ -1,3 +1,2 @@
-api key= c3a30ca5d83d4b6c9e761577d754cebb
 
 !!!!!!!!!! The api key used in this project is free and limited. To get better results, register at https://app.ipgeolocation.io/ and get your own api key. !!!!!!!!!!
