@@ -24,8 +24,10 @@ connection type : {info["connection_type"]}
 organization : {info["organization"]}""")
         
 
+def final():
+    ipaddresses=['35.186.224.25', '172.67.17.71', '162.159.134.234', '20.198.119.84', '138.199.12.82', '104.20.62.122']
+    for ipaddress in ipaddresses:
+        info=reqip(ipaddress)
+        print(info.viewinformation())
 
-
-
-req=reqip()
-
+final()
