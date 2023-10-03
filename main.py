@@ -1,12 +1,28 @@
+import os
 import re
 import subprocess
-import req 
+from colorama import Fore, Back, Style
+from src import req 
+from src import artwork
+os.system("cls")  
 
+
+
+print(Fore.BLUE+artwork.balluk_art)
+print()
+print()
+print()
+print(Fore.YELLOW+"---------------------Hello, welcome to Bulluk security tool------------------------")
+print()   
+print(Fore.YELLOW+"------------------------https://github.com/ballukpy--------------------------------")
+print()
+print(Fore.RED+"---------------------------The more anonymous safer---------------------------------")
+print()
 class IPextraction:
     def __init__(self) :
         self.db={}
 
-    def ip(self):
+    def ip(self):  #find ips
         output = subprocess.check_output(["netstat", "-a", "-n"]).decode("utf-8")
         pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'  #pattern for find ips
 
@@ -22,7 +38,7 @@ class IPextraction:
 
         return filtered_ips
 
-    def database(self):
+    def database(self):   #creat database
         ipaddresses = self.ip()
         for ipaddress in ipaddresses:
             info=req.reqip(ipaddress)
@@ -41,7 +57,31 @@ class IPextraction:
         return self.db
 
 
+    def meno(self):
+        try:
+            print(Fore.RED+"1 .",Fore.BLUE+"Start Scan IP Servers")
+            print(Fore.RED+"99 .",Fore.BLUE+"Exit")
+            while True:
+                khadam_num=int(input(Fore.YELLOW+"Enter the desired option number------> "))
+                if khadam_num == 1  :
+                    print("tabe fal mishavad")
+                    break
+                if khadam_num == 99:
+                    self.exit()
+                    break                      
+        except:
+            self.meno()
+    
+    def viewinforamtion(self):
+        pass
+        #namayesh ip ha !!!!!!!!!!!
+    
+    
+    def exit(self):
+        print("I hope there is no problem :)")
+        os._exit(0)  
 
 ipex=IPextraction()
-print(ipex.database())
+ipex.meno()
+
 
