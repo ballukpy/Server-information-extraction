@@ -58,27 +58,63 @@ class IPextraction:
 
 
     def meno(self):
-        try:
+            
             print(Fore.RED+"1 .",Fore.BLUE+"Start Scan IP Servers")
             print(Fore.RED+"99 .",Fore.BLUE+"Exit")
             while True:
-                khadam_num=int(input(Fore.YELLOW+"Enter the desired option number------> "))
-                if khadam_num == 1  :
-                    print("tabe fal mishavad")
-                    break
-                if khadam_num == 99:
-                    self.exit()
-                    break                      
-        except:
-            self.meno()
-    
+                try:
+                    khadamat_num=int(input(Fore.WHITE+"Enter the desired option number------> "))
+                    if khadamat_num == 1  :
+                        self.database()
+                        self.viewinforamtion()
+                        break
+                    if khadamat_num == 99:
+                        self.exit()
+                        break                      
+                except:
+                    self.meno()
     def viewinforamtion(self):
-        pass
-        #namayesh ip ha !!!!!!!!!!!
-    
-    
-    def exit(self):
-        print("I hope there is no problem :)")
+        try:
+            for self.num_ip in range(len(self.db)):  #Show IPs
+                print(f"""{self.num_ip}.  {self.db["p"+str(self.num_ip)]["ip"]}""")
+            pick_ip=int(input(Fore.WHITE+"Select the IP number to see IP information ----------->"))
+            if pick_ip < len(self.db):
+                print(f"""\nip : {self.db["p"+str(pick_ip)]["ip"]}
+                      
+                        continent name : {self.db["p"+str(pick_ip)]["continent_name"]}
+                        country code : {self.db["p"+str(pick_ip)]["country_code"]}
+                        country name : {self.db["p"+str(pick_ip)]["country_name"]}
+                        country capital : {self.db["p"+str(pick_ip)]["country_capital"]}
+                        city : {self.db["p"+str(pick_ip)]["city"]}
+                        calling code : {self.db["p"+str(pick_ip)]["calling_code"]}
+                        isp : {self.db["p"+str(pick_ip)]["isp"]}
+                        connection type : {self.db["p"+str(pick_ip)]["connection_type"]}
+                        organization : {self.db["p"+str(pick_ip)]["organization"]}""")
+            else:
+                print(Fore.RED+"Please choose from the available options.")
+                os.system("cls")
+                self.viewinforamtion()
+            while True:  
+                wanna=input(Fore.CYAN+"Do you want to return to the selection menu? y/n ---> ")
+                if wanna != "":   
+                    if wanna == "y":
+                        os.system("cls")
+                        self.viewinforamtion()
+                        break
+                    elif wanna == "n":
+                        self.exit()
+                        break
+                    else:
+                        wanna=input(Fore.CYAN+"Do you want to return to the selection menu? y/n ---> ")
+
+        except:
+            os.system("cls")
+            self.viewinforamtion()
+
+    def exit(self):  
+        """  میخوای لخت منو ببینی  """  
+        """ سخنی از پاندای کونگفوکار """    
+        print(Fore.RED+"I hope there is no problem :)")
         os._exit(0)  
 
 ipex=IPextraction()
