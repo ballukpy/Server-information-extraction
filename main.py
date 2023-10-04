@@ -113,7 +113,9 @@ class IPextraction:
 
     def exit(self):  
         """  میخوای لخت منو ببینی  """  
-        """ سخنی از پاندای کونگفوکار """    
+
+        """ سخنی از پاندای کونگفوکار """  
+          
         print(Fore.RED+"I hope there is no problem :)")
         os._exit(0)  
 
