@@ -1,5 +1,6 @@
 import os
 import re
+import time
 import subprocess
 from colorama import Fore, Back, Style
 from src import req 
@@ -40,9 +41,14 @@ class IPextraction:
 
     def database(self):   #creat database
         ipaddresses = self.ip()
+        animation = "|/-\\"
+        idx = 0
         for ipaddress in ipaddresses:
             info=req.reqip(ipaddress)
             main_db=info.getinformation()
+            print(animation[idx % len(animation)], end="\r")
+            idx += 1
+            time.sleep(0.1)
             self.db["p"+str(len(self.db))]={
             "ip":main_db["ip"],
             "continent_name":main_db["continent_name"],
@@ -54,7 +60,9 @@ class IPextraction:
             "isp":main_db["isp"],
             "connection_type":main_db["connection_type"],
             "organization":main_db["organization"]}
+
         return self.db
+
 
 
     def meno(self):
@@ -79,8 +87,7 @@ class IPextraction:
                 print(f"""{self.num_ip}.  {self.db["p"+str(self.num_ip)]["ip"]}""")
             pick_ip=int(input(Fore.WHITE+"Select the IP number to see IP information ----------->"))
             if pick_ip < len(self.db):
-                print(f"""\nip : {self.db["p"+str(pick_ip)]["ip"]}
-                      
+                print(f"""\nip : {self.db["p"+str(pick_ip)]["ip"]}                     
                         continent name : {self.db["p"+str(pick_ip)]["continent_name"]}
                         country code : {self.db["p"+str(pick_ip)]["country_code"]}
                         country name : {self.db["p"+str(pick_ip)]["country_name"]}
@@ -90,12 +97,13 @@ class IPextraction:
                         isp : {self.db["p"+str(pick_ip)]["isp"]}
                         connection type : {self.db["p"+str(pick_ip)]["connection_type"]}
                         organization : {self.db["p"+str(pick_ip)]["organization"]}""")
+                print()
             else:
                 print(Fore.RED+"Please choose from the available options.")
                 os.system("cls")
                 self.viewinforamtion()
             while True:  
-                wanna=input(Fore.CYAN+"Do you want to return to the selection menu? y/n ---> ")
+                wanna=input(Fore.CYAN+"\nDo you want to return to the selection menu? y/n ---> ")
                 if wanna != "":   
                     if wanna == "y":
                         os.system("cls")
@@ -117,6 +125,7 @@ class IPextraction:
         """ سخنی از پاندای کونگفوکار """  
           
         print(Fore.RED+"I hope there is no problem :)")
+        input()
         os._exit(0)  
 
 ipex=IPextraction()
