@@ -1,9 +1,11 @@
 import os
 import re
 import time
+import json
 import subprocess
 from colorama import Fore, Back, Style
 from src import req 
+from src import windows_security
 from src import artwork
 os.system("cls")  
 
@@ -65,6 +67,39 @@ class IPextraction:
 
 
 
+    def General_meno(self):
+            print(Fore.RED+"Choose your service")
+            print(Fore.RED+"1 .",Fore.BLUE+"Information about IP Servers")
+            print(Fore.RED+"2 .",Fore.BLUE+"Windows Security Status ")
+
+            while True:
+                        try:
+                            khadamat_num=int(input(Fore.WHITE+"Enter the desired option number------> "))
+                            if khadamat_num == 1  :
+                                self.meno()
+                                break
+                            if khadamat_num == 2  :
+                                self.sec_win()
+                                break
+                            if khadamat_num == 99:
+                                self.exit()
+                                break                      
+                        except:
+                            self.General_meno_IP()
+
+
+
+
+       
+    def sec_win(self): #nages
+        secwin=windows_security.win_sec()
+        self.sec_db=secwin.win_sec_db_creat()    
+        json_str = json.dumps(self.sec_db, indent=4)
+        print(json_str)
+
+
+
+
     def meno(self):
             
             print(Fore.RED+"1 .",Fore.BLUE+"Start Scan IP Servers")
@@ -81,6 +116,9 @@ class IPextraction:
                         break                      
                 except:
                     self.meno()
+    
+    
+    
     def viewinforamtion(self):
         try:
             for self.num_ip in range(len(self.db)):  #Show IPs
@@ -129,6 +167,6 @@ class IPextraction:
         os._exit(0)  
 
 ipex=IPextraction()
-ipex.meno()
+ipex.General_meno()
 
 
