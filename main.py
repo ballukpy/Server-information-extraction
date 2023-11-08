@@ -73,7 +73,7 @@ class IPextraction:
             print(Fore.RED+"2 .",Fore.BLUE+"Windows Security Status ")
 
             while True:
-                        try:
+                        # try:
                             khadamat_num=int(input(Fore.WHITE+"Enter the desired option number------> "))
                             if khadamat_num == 1  :
                                 self.meno()
@@ -84,18 +84,26 @@ class IPextraction:
                             if khadamat_num == 99:
                                 self.exit()
                                 break                      
-                        except:
-                            self.General_meno_IP()
+                        # except:
+                        #     self.General_meno()
 
 
 
 
        
-    def sec_win(self): #nages
+    def sec_win(self): #nages bazgash be meno va nahve namayesh nages
         secwin=windows_security.win_sec()
         self.sec_db=secwin.win_sec_db_creat()    
-        json_str = json.dumps(self.sec_db, indent=4)
-        print(json_str)
+        # json_str = json.dumps(self.sec_db, indent=4)
+        print(Fore.GREEN+f"""\t\tComputer ID :{self.sec_db["p4"]["ComputerID"]}
+                    AMEngin Version : {self.sec_db["p0"]["AMEngineVersion"]}
+                    AMProduct Version : {self.sec_db["p1"]["AMProductVersion"]}
+                    AMRunning Mode : {self.sec_db["p2"]["AMRunningMode"]}
+                    Antivirus Enabled : {self.sec_db["p3"]["AntivirusEnabled"]}
+                    Full Scan End Time : {self.sec_db["p5"]["FullScanEndTime"]}
+                    Full Scan Required : {self.sec_db["p6"]["FullScanRequired"]}
+                    Real Time Protection Enabled : {self.sec_db["p7"]["RealTimeProtectionEnabled"]}
+                    Smart App ControlState : {self.sec_db["p8"]["SmartAppControlState"]} \n""")
 
 
 
@@ -112,7 +120,7 @@ class IPextraction:
                         self.viewinforamtion()
                         break
                     if khadamat_num == 99:
-                        self.exit()
+                        self.General_meno()
                         break                      
                 except:
                     self.meno()
@@ -148,7 +156,7 @@ class IPextraction:
                         self.viewinforamtion()
                         break
                     elif wanna == "n":
-                        self.exit()
+                        self.General_meno()
                         break
                     else:
                         wanna=input(Fore.CYAN+"Do you want to return to the selection menu? y/n ---> ")
