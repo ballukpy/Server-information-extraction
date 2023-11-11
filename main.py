@@ -73,7 +73,7 @@ class IPextraction:
             print(Fore.RED+"2 .",Fore.BLUE+"Windows Security Status ")
 
             while True:
-                        # try:
+                        try:
                             khadamat_num=int(input(Fore.WHITE+"Enter the desired option number------> "))
                             if khadamat_num == 1  :
                                 self.meno()
@@ -84,26 +84,37 @@ class IPextraction:
                             if khadamat_num == 99:
                                 self.exit()
                                 break                      
-                        # except:
-                        #     self.General_meno()
+                        except:
+                            self.General_meno()
 
 
 
 
        
-    def sec_win(self): #nages bazgash be meno va nahve namayesh nages
+    def sec_win(self): #loop nist
         secwin=windows_security.win_sec()
         self.sec_db=secwin.win_sec_db_creat()    
-        # json_str = json.dumps(self.sec_db, indent=4)
-        print(Fore.GREEN+f"""\t\tComputer ID :{self.sec_db["p4"]["ComputerID"]}
-                    AMEngin Version : {self.sec_db["p0"]["AMEngineVersion"]}
-                    AMProduct Version : {self.sec_db["p1"]["AMProductVersion"]}
-                    AMRunning Mode : {self.sec_db["p2"]["AMRunningMode"]}
-                    Antivirus Enabled : {self.sec_db["p3"]["AntivirusEnabled"]}
-                    Full Scan End Time : {self.sec_db["p5"]["FullScanEndTime"]}
-                    Full Scan Required : {self.sec_db["p6"]["FullScanRequired"]}
-                    Real Time Protection Enabled : {self.sec_db["p7"]["RealTimeProtectionEnabled"]}
-                    Smart App ControlState : {self.sec_db["p8"]["SmartAppControlState"]} \n""")
+        print(Fore.GREEN+f"""\t\tComputer ID :{self.sec_db["p4"]["ComputerID"][0]}
+                    AMEngin Version : {self.sec_db["p0"]["AMEngineVersion"][0]}
+                    AMProduct Version : {self.sec_db["p1"]["AMProductVersion"][0]}
+                    AMRunning Mode : {self.sec_db["p2"]["AMRunningMode"][0]}
+                    Antivirus Enabled : {self.sec_db["p3"]["AntivirusEnabled"][0]}
+                    Full Scan End Time : {self.sec_db["p5"]["FullScanEndTime"][0]}
+                    Full Scan Required : {self.sec_db["p6"]["FullScanRequired"][0]}
+                    Real Time Protection Enabled : {self.sec_db["p7"]["RealTimeProtectionEnabled"][0]}
+                    Smart App ControlState : {self.sec_db["p8"]["SmartAppControlState"][0]} \n""")
+        while True:  
+                wanna=input(Fore.CYAN+"\nDo you want to return menu? y/n ---> ")
+                if wanna != "":   
+                    if wanna == "y":
+                        os.system("cls")
+                        self.General_meno()
+                        break
+                    elif wanna == "n":
+                        self.exit()
+                        break
+                    else:
+                        wanna=input(Fore.CYAN+"Do you want to return menu? y/n --->? ")
 
 
 
